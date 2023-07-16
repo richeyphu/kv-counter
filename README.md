@@ -1,3 +1,3 @@
-# workers-kv-counter
+# kv-counter
 
-A simple counter using Cloudflare Workers and Workers KV.
+Simple numeric counters, Integer as a Service, using Cloudflare Workers and Workers KV.

@@ -1,14 +1,21 @@
 {
-  "name": "workers-kv-counter",
-  "version": "0.0.0",
+  "name": "kv-counter",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "start": "wrangler dev"
+    "start": "wrangler dev",
+    "build": "worktop build src/index.ts",
+    "watch": "onchange \"src/**/*.ts\" -- pnpm build",
+    "dev": "pnpm build && concurrently \"pnpm watch\" \"pnpm start\""
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230419.0",
-    "typescript": "^5.0.4",
-    "wrangler": "^3.0.0"
+    "concurrently": "^8.2.0",
+    "onchange": "^7.1.0",
+    "typescript": "^5.1.6",
+    "worktop": "0.8.0-next.15",
+    "worktop.build": "^0.0.5",
+    "wrangler": "^3.2.0"
   }
 }
