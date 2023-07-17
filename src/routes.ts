@@ -20,3 +20,14 @@ export const hit: Handler = async function (req, context) {
 
 	return reply(200, { value: data });
 };
+
+/**
+ * GET /get/:key
+ */
+export const get: Handler = async function (req, context) {
+	const { key } = context.params;
+
+	const data = await Model.get(context.bindings.HITS, key);
+
+	return reply(200, { value: data });
+};

@@ -11,6 +11,7 @@ API.prepare = Cache.sync();
 
 API.add('GET', '/', Route.index);
 API.add('GET', '/hit/:key', Route.hit);
+API.add('GET', '/get/:key', Route.get);
 
 // Module Worker
 export default start(API.run);
