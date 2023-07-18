@@ -5,7 +5,7 @@ import type { KV } from 'worktop/cfw.kv';
 /**
  * Increment the counter for a given key
  */
-export async function hit(HITS: KV.Namespace, key: string): Promise<number> {
+export const hit = async (HITS: KV.Namespace, key: string): Promise<number> => {
 	const value = await read<number>(HITS, key, 'json');
 
 	if (value === null) {
@@ -15,12 +15,12 @@ export async function hit(HITS: KV.Namespace, key: string): Promise<number> {
 
 	await write(HITS, key, value + 1);
 	return value + 1;
-}
+};
 
 /**
  * Get the counter for a given key
  */
-export async function get(HITS: KV.Namespace, key: string): Promise<number> {
+export const get = async (HITS: KV.Namespace, key: string): Promise<number> => {
 	const value = await read<number>(HITS, key, 'json');
 	return value || 0;
-}
+};
