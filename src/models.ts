@@ -1,8 +1,7 @@
 import { read, write } from 'worktop/cfw.kv';
+import { toKeyname } from './utils';
 
 import type { KV } from 'worktop/cfw.kv';
-
-export const toKeyname = (namespace: string | null, key: string) => `name::${namespace ?? 'default'}::key::${key}`;
 
 /**
  * Increment the counter for a given key
