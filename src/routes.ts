@@ -1,5 +1,6 @@
 import { reply } from 'worktop/response';
 import * as Model from './models';
+import { isKeyValid } from './utils';
 
 import type { Handler } from './types';
 
@@ -15,6 +16,10 @@ export const index: Handler = (req, context) => {
  */
 export const hit: Handler = async (req, context) => {
 	const { namespace, key } = context.params;
+
+	if (!isKeyValid(key) || !isKeyValid(namespace)) {
+		return reply(400, { error: 'Invalid key/namespace' });
+	}
 
 	const data = await Model.hit(context.bindings.HITS, namespace, key);
 
