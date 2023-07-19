@@ -12,7 +12,7 @@ export const index: Handler = (req, context) => {
 };
 
 /**
- * GET /hit/:key
+ * GET /hit/:namespace?/:key
  */
 export const hit: Handler = async (req, context) => {
 	const { namespace, key } = context.params;
@@ -27,7 +27,7 @@ export const hit: Handler = async (req, context) => {
 };
 
 /**
- * GET /get/:key
+ * GET /get/:namespace?/:key
  */
 export const get: Handler = async (req, context) => {
 	const { namespace, key } = context.params;
