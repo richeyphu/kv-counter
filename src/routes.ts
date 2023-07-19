@@ -14,9 +14,9 @@ export const index: Handler = (req, context) => {
  * GET /hit/:key
  */
 export const hit: Handler = async (req, context) => {
-	const { key } = context.params;
+	const { namespace, key } = context.params;
 
-	const data = await Model.hit(context.bindings.HITS, key);
+	const data = await Model.hit(context.bindings.HITS, namespace, key);
 
 	return reply(200, { value: data });
 };
@@ -25,9 +25,9 @@ export const hit: Handler = async (req, context) => {
  * GET /get/:key
  */
 export const get: Handler = async (req, context) => {
-	const { key } = context.params;
+	const { namespace, key } = context.params;
 
-	const data = await Model.get(context.bindings.HITS, key);
+	const data = await Model.get(context.bindings.HITS, namespace, key);
 
 	return reply(200, { value: data });
 };

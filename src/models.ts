@@ -2,25 +2,30 @@ import { read, write } from 'worktop/cfw.kv';
 
 import type { KV } from 'worktop/cfw.kv';
 
+export const toKeyname = (namespace: string | null, key: string) => `name::${namespace ?? 'default'}::key::${key}`;
+
 /**
  * Increment the counter for a given key
  */
-export const hit = async (HITS: KV.Namespace, key: string): Promise<number> => {
-	const value = await read<number>(HITS, key, 'json');
+export const hit = async (HITS: KV.Namespace, namespace: string | null, key: string): Promise<number> => {
+	const keyname = toKeyname(namespace, key);
 
+	const value = await read<number>(HITS, keyname, 'json');
 	if (value === null) {
-		await write(HITS, key, 1);
+		await write(HITS, keyname, 1);
 		return 1;
 	}
 
-	await write(HITS, key, value + 1);
+	await write(HITS, keyname, value + 1);
 	return value + 1;
 };
 
 /**
  * Get the counter for a given key
  */
-export const get = async (HITS: KV.Namespace, key: string): Promise<number> => {
-	const value = await read<number>(HITS, key, 'json');
+export const get = async (HITS: KV.Namespace, namespace: string | null, key: string): Promise<number> => {
+	const keyname = toKeyname(namespace, key);
+	const value = await read<number>(HITS, keyname, 'json');
+
 	return value || 0;
 };

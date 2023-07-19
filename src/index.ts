@@ -10,8 +10,8 @@ const API = new Router<Context>();
 API.prepare = Cache.sync();
 
 API.add('GET', '/', Route.index);
-API.add('GET', '/hit/:key', Route.hit);
-API.add('GET', '/get/:key', Route.get);
+API.add('GET', '/hit/:namespace?/:key', Route.hit);
+API.add('GET', '/get/:namespace?/:key', Route.get);
 
 // Module Worker
 export default start(API.run);
