@@ -8,7 +8,29 @@ import type { Handler } from './types';
  * GET /
  */
 export const index: Handler = (req, context) => {
-	return reply(200, { message: 'Hello, World!' });
+	const data = {
+		message: 'Welcome to the KV Counter API',
+		repo: 'https://github.com/richeyphu/kv-counter',
+		endpoints: [
+			{
+				method: 'GET',
+				path: '/',
+				description: 'Provides an overview of the API',
+			},
+			{
+				method: 'GET',
+				path: '/hit/:namespace?/:key',
+				description: 'Increments the counter for the specified key in the given namespace',
+			},
+			{
+				method: 'GET',
+				path: '/get/:namespace?/:key',
+				description: 'Retrieves the current value of the counter for the specified key in the given namespace',
+			},
+		],
+	};
+
+	return reply(200, data);
 };
 
 /**
