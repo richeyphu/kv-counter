@@ -23,7 +23,14 @@ export const hit: Handler = async (req, context) => {
 
 	const data = await Model.hit(context.bindings.HITS, namespace, key);
 
-	return reply(200, { value: data });
+	const headers = {
+		'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+		Pragma: 'no-cache',
+		Expires: '0',
+		'Surrogate-Control': 'no-store',
+	};
+
+	return reply(200, { value: data }, headers);
 };
 
 /**
