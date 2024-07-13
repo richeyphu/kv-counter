@@ -2,6 +2,7 @@ import { reply } from 'worktop/response';
 import * as Model from './models';
 import { isKeyValid } from './utils';
 
+import type { HeadersObject } from 'worktop/response';
 import type { Handler } from './types';
 
 /**
@@ -45,7 +46,7 @@ export const hit: Handler = async (req, context) => {
 
 	const data = await Model.hit(context.bindings.HITS, namespace, key);
 
-	const headers = {
+	const headers: HeadersObject = {
 		'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
 		Pragma: 'no-cache',
 		Expires: '0',
