@@ -6,7 +6,7 @@ Simple numeric counters—Integer-as-a-Service API—using [Cloudflare Workers](
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/richeyphu/kv-counter)
 
-> _WIP_
+> _WIP_, contributions are welcome.
 
 ## License
 
